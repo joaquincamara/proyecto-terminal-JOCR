@@ -5,5 +5,5 @@
 
   session_destroy();
 
-  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/');
+  header('Location: /DPW2_U1_A3_JOCR/');
 ?>
