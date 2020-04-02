@@ -30,93 +30,60 @@
 <head>
     <meta charset="utf-8">
     <title>SignUp</title>
-    <link rel="stylesheet" href="./normalize.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
 <body>
-<?php require 'partials/header.php' ?>
+  <?php require 'partials/header.php' ?>
 
-<?php if(!empty($message)): ?>
-      <p> <?= $message ?></p>
+  <?php if(!empty($message)): ?>
+    <p> <?= $message ?></p>
+  <?php endif; ?>
+
+  <?php if(!empty($clients)): ?>
+
+  <div class="dashboardContainer">
+    <div class="tableContainer">
+      <table id="clients-table">
+        <thead>
+          <tr>
+            <th scope="col">Clients</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($clients) {
+            echo "<tr><td>". $clients['completeName'] ."</td><tr>";
+            echo "</table>";
+          } ?>
+        </tbody>
+        </table>
+    </div>
     <?php endif; ?>
 
-<?php if(!empty($clients)): ?>
+    <div class="clientRegistryContainer">
+      <form action="specialistDasboard.php" method="POST">
+        
+        <div class="clientRegistryInputsSection">
+          <div class="clientRegistryInputsSection-box1">
+            <input placeholder="Complete name" name="completeName" type="text" id="completeName" >
+            <input placeholder="Email" name="email" type="text" id="email" >
+            <input placeholder="Phone" name="phone" type="text" id="phone" >
+          </div>
+          <div class="clientRegistryInputsSection-box2">
+            <input placeholder="Reason for visit" name="reasonForVisit" type="text" id="reasonForVisit" >
+            <input placeholder="Start treatment date" name="startTreatmentDate" type="text" id="startTreatmentDate" >
+            <input placeholder="End treatment date" name="endTreatmentDate" type="text" id="endTreatmentDate" >
+          </div>
+        </div>
 
-<div class="row">
-  <div class="col-6">
-
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Reason of visit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php if ($clients) {
-      echo "<tr><td>". $clients['completeName'] ."</td><td>". $clients['reasonForVisit'] ."</td><tr>";
-      echo "</table>";
-    } ?>
-  </tbody>
-</table>
+        <div class="clientRegistryTextareaSection">
+          <textarea placeholder="Treatment" name="treatment" id="treatment" rows="8"></textarea>
+          <textarea placeholder="Prescription Drugs" name="prescriptionDrug" id="prescriptionDrug" rows="8"></textarea>
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
   </div>
-<?php endif; ?>
-
-<div class="col-6">
- <form action="specialistDasboard.php" method="POST">
-  <div class="form-group">
-    <label for="completeName">Complete name</label>
-    <input name="completeName" type="text" class="form-control" id="completeName" >
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input name="email" type="text" class="form-control" id="email" >
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input name="phone" type="text" class="form-control" id="phone" >
-  </div>
-
-  <div class="form-group">
-    <label for="reasonForVisit">Reason for visit</label>
-    <input name="reasonForVisit" type="text" class="form-control" id="reasonForVisit" >
-  </div>
-
-
-  <div class="form-group">
-    <label for="treatment">Treatment</label>
-    <textarea name="treatment" class="form-control" id="treatment" rows="3"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="prescriptionDrug">Prescription Drugs</label>
-    <textarea name="prescriptionDrug" class="form-control" id="prescriptionDrug" rows="3"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="startTreatmentDate">Start treatment date</label>
-    <input name="startTreatmentDate" type="text" class="form-control" id="startTreatmentDate" >
-  </div>
-
-  <div class="form-group">
-    <label for="endTreatmentDate">End treatment date</label>
-    <input name="endTreatmentDate" type="text" class="form-control" id="endTreatmentDate" >
-  </div>
-
-  <input type="submit" value="Submit">
-</form>
- </div>
-
-</div>
 </body>
 </html>
