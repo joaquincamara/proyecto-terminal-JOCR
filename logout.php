@@ -5,5 +5,5 @@
 
   session_destroy();
 
-  header('Location: /DPW2_U1_A3_JOCR/');
+  header('Location: /proyecto_termina_I/');
 ?>

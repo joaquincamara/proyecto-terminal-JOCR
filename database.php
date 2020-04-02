@@ -30,13 +30,20 @@ try {
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
     $inicio = null;
+    $clients = null;
 
-    if (count($results) > 0) {
+    $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit FROM clients');
+    $clientRecords->execute();
+    $clientResults = $clientRecords->fetch(PDO::FETCH_ASSOC);
+
+
+    if (count($results)> 0 && count($clientResults) > 0) {
       $inicio = $results;
+      $clients = $clientResults;
     }
   }
 } catch (PDOException $e) {
-  die('Connection Failed: ' . $e->getMessage());
+  die('Connection Failed: ' . $e->getMessage()) ;
 }
 
 ?>
