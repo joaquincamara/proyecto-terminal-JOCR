@@ -32,6 +32,7 @@ try {
     $inicio = null;
     $clients = null;
     $specialists = null;
+    $clinics = null;
 
     $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit FROM clients');
     $clientRecords->execute();
@@ -44,11 +45,16 @@ try {
     $specialistRecords->execute();
     $specialistResults = $specialistRecords->fetch(PDO::FETCH_ASSOC);
 
+    $clinicRecords = $conn ->prepare('SELECT name FROM clinic');
+    $clinicRecords->execute();
+    $clinicResults = $clinicRecords->fetch(PDO::FETCH_ASSOC);
+
 
     if (count($results)> 0 && count($clientResults) > 0) {
       $inicio = $results;
       $clients = $clientResults;
       $specialists = $specialistResults;
+      $clinics = $clinicResults;
     }
   }
 } catch (PDOException $e) {

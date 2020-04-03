@@ -13,10 +13,13 @@
 
       <?php if(!empty($inicio['usertype'] == 'superAdmin')): ?>
         <li>
-          <a href="superAdminDashboard.php" >Admin Dashboard</a>
+          <a href="superAdminDashboard.php" >Specialist Admin Dashboard</a>
+        </li>
+        <li>
+          <a href="clinicsAdminDasboard.php" >Clinics Admin Dashboard</a>
         </li>
       <?php endif; ?>
-      
+
       <li>
         <a href="logout.php" >Logout</a>
       </li>
