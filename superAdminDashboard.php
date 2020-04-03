@@ -16,31 +16,57 @@
     $stmt->bindParam(':phone', $_POST['phone']);
 
     if ($stmt->execute()) {
-      $message = 'Successfully created new user. Go to Login to start the magic!!!';
+      $message = 'Successfully created new specialist';
     } else {
-      $message = 'Sorry there must have been an issue creating your account';
+      $message = 'Sorry there must have been an issue creating the account';
     }
   }
 ?>
+
+
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <title>SignUp</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+
   </head>
-  <body>
+<body>
+  <?php require 'partials/header.php' ?>
 
-    <?php require 'partials/header.php' ?>
+  <?php if(!empty($message)): ?>
+    <p> <?= $message ?></p>
+  <?php endif; ?>
 
-    <?php if(!empty($message)): ?>
-      <p> <?= $message ?></p>
+  <?php if(!empty($clients)): ?>
+
+  <div class="dashboardContainer">
+    <div class="tableContainer">
+      <table id="clients-table">
+        <thead>
+          <tr>
+            <th scope="col">Specialists</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php 
+            while($row = $specialistRecords->fetch(PDO::FETCH_ASSOC))
+              {
+                echo "<tr>";
+                echo "<td>".$row['name']." ".$row['fatherLastName']." ".$row['motherLastName']."</td>";
+                echo "</tr>";
+              }
+           ?>
+        </tbody>
+        </table>
+    </div>
     <?php endif; ?>
-    <div class="signUpCard">
-      <h1>SignUp</h1>
-      <span>or <a href="index.php">Login</a></span>
-      <form action="signup.php" method="POST">
+
+    <div class="specialistRegistry">
+      <h1>Specialist registry</h1>
+      <form action="superAdminDashboard.php" method="POST">
         <input name="name" type="text" placeholder="Enter your name">
         <input name="fatherLastName" type="text" placeholder="Enter your father Lastname">
         <input name="motherLastName" type="text" placeholder="Enter your mother Lastname">
@@ -51,5 +77,6 @@
         <input type="submit" value="Submit">
       </form>
     </div>
-  </body>
+  </div>
+</body>
 </html>

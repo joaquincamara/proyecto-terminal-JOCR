@@ -4,14 +4,14 @@
   $message = '';
 
   if (!empty($_POST['completeName']) && !empty($_POST['email'])) {
-    $sql = "INSERT INTO clients (completeName, email, phone, reasonForVisit, treatment, prescriptionDrug, startTreatmentDate, endTreatmentDate) VALUES (:completeName, :email, :phone, :reasonForVisit, :treatment, :prescriptionDrug, :startTreatmentDate, :endTreatmentDate)";
+    $sql = "INSERT INTO clients (completeName, email, phone, reasonForVisit, treatment, prescriptionDrugs, startTreatmentDate, endTreatmentDate) VALUES (:completeName, :email, :phone, :reasonForVisit, :treatment, :prescriptionDrugs, :startTreatmentDate, :endTreatmentDate)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':completeName', $_POST['completeName']);
     $stmt->bindParam(':email', $_POST['email']);
     $stmt->bindParam(':phone', $_POST['phone']);
     $stmt->bindParam(':reasonForVisit', $_POST['reasonForVisit']);
     $stmt->bindParam(':treatment', $_POST['treatment']);
-    $stmt->bindParam(':prescriptionDrug', $_POST['prescriptionDrug']);
+    $stmt->bindParam(':prescriptionDrugs', $_POST['prescriptionDrugs']);
     $stmt->bindParam(':startTreatmentDate', $_POST['startTreatmentDate']);
     $stmt->bindParam(':endTreatmentDate', $_POST['endTreatmentDate']);
 
@@ -52,10 +52,14 @@
           </tr>
         </thead>
         <tbody>
-          <?php if ($clients) {
-            echo "<tr><td>". $clients['completeName'] ."</td><tr>";
-            echo "</table>";
-          } ?>
+          <?php 
+            while($row = $clientRecords->fetch(PDO::FETCH_ASSOC))
+              {
+                echo "<tr>";
+                echo "<td>" . $row['completeName'] . "</td>";
+                echo "</tr>";
+              }
+           ?>
         </tbody>
         </table>
     </div>
@@ -79,7 +83,7 @@
 
         <div class="clientRegistryTextareaSection">
           <textarea placeholder="Treatment" name="treatment" id="treatment" rows="8"></textarea>
-          <textarea placeholder="Prescription Drugs" name="prescriptionDrug" id="prescriptionDrug" rows="8"></textarea>
+          <textarea placeholder="Prescription Drugs" name="prescriptionDrugs" id="prescriptionDrugs" rows="8"></textarea>
           <input type="submit" value="Submit">
         </div>
       </form>

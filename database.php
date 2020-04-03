@@ -24,22 +24,31 @@ try {
   session_start();
 
   if (isset($_SESSION['user_id'])) {
-    $records = $conn->prepare('SELECT id, name, email, fatherLastName, motherLastName, password FROM users WHERE id = :id');
+    $records = $conn->prepare('SELECT id, name, email, fatherLastName, motherLastName, password, usertype FROM users WHERE id = :id');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
     $inicio = null;
     $clients = null;
+    $specialists = null;
 
     $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit FROM clients');
     $clientRecords->execute();
     $clientResults = $clientRecords->fetch(PDO::FETCH_ASSOC);
 
 
+    $type = "specialist";
+    $specialistRecords = $conn ->prepare('SELECT name, fatherLastName, motherLastName FROM users WHERE usertype = :usertype');
+    $specialistRecords->bindParam(':usertype', $type);
+    $specialistRecords->execute();
+    $specialistResults = $specialistRecords->fetch(PDO::FETCH_ASSOC);
+
+
     if (count($results)> 0 && count($clientResults) > 0) {
       $inicio = $results;
       $clients = $clientResults;
+      $specialists = $specialistResults;
     }
   }
 } catch (PDOException $e) {
