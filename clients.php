@@ -55,11 +55,13 @@
           <?php 
             while($row = $clientRecords->fetch(PDO::FETCH_ASSOC))
               {
-                echo "<tr>";
-                echo "<td>" . $row['completeName'] . "</td>";
-                echo "</tr>";
-              }
-           ?>
+          ?>
+                <tr>
+                  <td>  <?php echo $row['completeName']; ?> <a href="deleteClient.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                </tr>
+          <?php 
+              } 
+          ?>
         </tbody>
         </table>
     </div>

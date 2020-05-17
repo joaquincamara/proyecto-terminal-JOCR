@@ -40,7 +40,7 @@
     <p> <?= $message ?></p>
   <?php endif; ?>
 
-  <?php if(!empty($clients)): ?>
+  <?php if(!empty($specialistRecords)): ?>
 
   <div class="dashboardContainer">
     <div class="tableContainer">
@@ -51,14 +51,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php 
+        <?php 
             while($row = $specialistRecords->fetch(PDO::FETCH_ASSOC))
               {
-                echo "<tr>";
-                echo "<td>".$row['name']." ".$row['fatherLastName']." ".$row['motherLastName']."</td>";
-                echo "</tr>";
-              }
-           ?>
+          ?>
+                <tr>
+                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                </tr>
+          <?php 
+              } 
+          ?>
         </tbody>
         </table>
     </div>

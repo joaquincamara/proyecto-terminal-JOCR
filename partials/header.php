@@ -5,29 +5,33 @@
 ?>
 
 <header>
-  <ul >
+  <ul  class="nabvar" >
     <?php if(!empty($inicio)): ?>
-      <li>
-        <a href="specialistDasboard.php" >Client Dashboard</a>
+      <li class='navbarItem' >
+        <a href="clientsManagement.php" >Resigtro de clientes</a>
+      </li>
+
+      <li class='navbarItem' >
+        <a href="calendarView.php" >Calendario de citas</a>
       </li>
 
       <?php if(!empty($inicio['usertype'] == 'superAdmin')): ?>
-        <li>
-          <a href="superAdminDashboard.php" >Specialist Admin Dashboard</a>
+        <li class='navbarItem' >
+          <a href="superAdminDashboard.php" >Resgistro de especialistas</a>
         </li>
-        <li>
-          <a href="clinicsAdminDasboard.php" >Clinics Admin Dashboard</a>
+        <li class='navbarItem' >
+          <a href="clinicsAdminDasboard.php" >Registro de clinicas</a>
         </li>
       <?php endif; ?>
 
-      <li>
+      <li class='navbarItem' >
         <a href="logout.php" >Logout</a>
       </li>
     <?php else: ?>
-      <li>
+      <li class='navbarItem' >
         <a href="index.php">Login</a>
       </li>
-      <li>
+      <li class='navbarItem' >
         <a href="signup.php">SignUp</a>
       </li>
     <?php endif; ?>

@@ -17,6 +17,7 @@
 
     if ($stmt->execute()) {
       $message = 'Successfully created new user. Go to Login to start the magic!!!';
+      mail('joaquin.camara.rivera@gmail.com','prueba undam',$message);
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }
@@ -37,19 +38,23 @@
     <?php if(!empty($message)): ?>
       <p> <?= $message ?></p>
     <?php endif; ?>
-    <div class="signUpCard">
-      <h1>SignUp</h1>
-      <span>or <a href="index.php">Login</a></span>
-      <form action="signup.php" method="POST">
-        <input name="name" type="text" placeholder="Enter your name">
-        <input name="fatherLastName" type="text" placeholder="Enter your father Lastname">
-        <input name="motherLastName" type="text" placeholder="Enter your mother Lastname">
-        <input name="phone" type="text" placeholder="Enter your phone">
-        <input name="email" type="text" placeholder="Enter your email">
-        <input name="password" type="password" placeholder="Enter your Password">
-        <input name="confirm_password" type="password" placeholder="Confirm Password">
-        <input type="submit" value="Submit">
-      </form>
+    <div class="appContainer">
+      <div class="signUpCard">
+        <h1>SignUp</h1>
+        <span>or <a href="index.php">Login</a></span>
+        <form onsubmit="return formSignInValidations();" action="signup.php" method="POST" required>
+          <input id="name"  name="name" type="text" placeholder="Ingresa un nombre" required>
+          <input id="fatherLastName" name="fatherLastName" type="text" placeholder="Ingresa el primer apellido" required>
+          <input id="motherLastName" name="motherLastName" type="text" placeholder="Ingresa el segundo apellido" required>
+          <input id="phone" name="phone" type="text" placeholder="Enter your phone" required>
+          <input pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Ingresa un correo valido." id="email" name="email" type="text" placeholder="Ingresa un corrreo electronico" required>
+          <input id="password" name="password" type="password" placeholder="Ingresa una constraseña" required>
+          <input id="confirm_password" name="confirm_password" type="password" placeholder="Ingresa una constraseña"required>
+          <input type="submit" value="Registrar">
+        </form>
+      </div>
     </div>
+
+    <script src="validateForms.js"></script>
   </body>
 </html>

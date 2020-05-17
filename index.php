@@ -22,10 +22,10 @@
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
    // production 
-  // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/');
+  // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
    // Develop
 
-   header('Location: /proyecto_termina_I/specialistDasboard.php');
+   header('Location: /proyecto_termina_I/clientsManagement.php');
 
     } else {
       $message = 'Sorry, those credentials do not match';
@@ -48,15 +48,17 @@
     <?php if(!empty($message)): ?>
       <p> <?= $message ?></p>
     <?php endif; ?>
-
-    <div class="loginCard">
-    <h1>Login</h1>
-    <span>or <a href="signup.php">SignUp</a></span>
-      <form action="index.php" method="POST">
-        <input name="email" type="text" placeholder="Enter your email">
-        <input name="password" type="password" placeholder="Enter your Password">
-        <input type="submit" value="Submit">
-      </form>
+    
+    <div class="appContainer">
+      <div class="loginCard">
+        <h1>Login</h1>
+        <span>or <a href="signup.php">SignUp</a></span>
+        <form action="index.php" method="POST">
+          <input name="email" type="text" placeholder="Enter your email">
+          <input name="password" type="password" placeholder="Enter your Password">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
     </div>
   </body>
 </html>

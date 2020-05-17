@@ -1,13 +1,14 @@
 <?php
 
 // Production
-/*
 
+/*
 $server = 'localhost';
-$username = 'id12754084_joaquincamara';
-$password = 'Joaquincr1';
-$database = 'id12754084_users';
+$username = 'id12895322_proyectofinal';
+$password = 'Joaquincr__123';
+$database = 'id12895322_proyectoterminal';
 */
+
 
 // Develop
 $server = 'localhost:8889';
@@ -34,18 +35,18 @@ try {
     $specialists = null;
     $clinics = null;
 
-    $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit FROM clients');
+    $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit, id FROM clients');
     $clientRecords->execute();
     $clientResults = $clientRecords->fetch(PDO::FETCH_ASSOC);
 
 
     $type = "specialist";
-    $specialistRecords = $conn ->prepare('SELECT name, fatherLastName, motherLastName FROM users WHERE usertype = :usertype');
+    $specialistRecords = $conn ->prepare('SELECT name, fatherLastName, motherLastName, id FROM users WHERE usertype = :usertype');
     $specialistRecords->bindParam(':usertype', $type);
     $specialistRecords->execute();
     $specialistResults = $specialistRecords->fetch(PDO::FETCH_ASSOC);
 
-    $clinicRecords = $conn ->prepare('SELECT name FROM clinic');
+    $clinicRecords = $conn ->prepare('SELECT name, id FROM clinic');
     $clinicRecords->execute();
     $clinicResults = $clinicRecords->fetch(PDO::FETCH_ASSOC);
 

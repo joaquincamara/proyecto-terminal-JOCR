@@ -40,25 +40,27 @@
     <p> <?= $message ?></p>
   <?php endif; ?>
 
-  <?php if(!empty($clients)): ?>
+  <?php if(!empty($clinics)): ?>
 
   <div class="dashboardContainer">
     <div class="tableContainer">
       <table id="clients-table">
         <thead>
           <tr>
-            <th scope="col">Specialists</th>
+            <th scope="col">Clinics</th>
           </tr>
         </thead>
         <tbody>
-          <?php 
+        <?php 
             while($row = $clinicRecords->fetch(PDO::FETCH_ASSOC))
               {
-                echo "<tr>";
-                echo "<td>".$row['name']."</td>";
-                echo "</tr>";
-              }
-           ?>
+          ?>
+                <tr>
+                  <td>  <?php echo $row['name']; ?> <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                </tr>
+          <?php 
+              } 
+          ?>
         </tbody>
         </table>
     </div>
