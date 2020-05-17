@@ -18,6 +18,7 @@
     if ($stmt->execute()) {
       $message = 'Successfully created new user. Go to Login to start the magic!!!';
       mail($_POST['email'],'Registro en S.I.C.E.',$message);
+
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }
@@ -41,7 +42,7 @@
     <div class="appContainer">
       <div class="signUpCard">
         <h1>SignUp</h1>
-        <span>or <a href="index.php">Login</a></span>
+        <span>o <a href="index.php">Login</a></span>
         <form onsubmit="return formSignInValidations();" action="signup.php" method="POST">
           <input id="name"  name="name" type="text" placeholder="Nombre" required>
           <input id="fatherLastName" name="fatherLastName" type="text" placeholder="Apellido paterno" required>

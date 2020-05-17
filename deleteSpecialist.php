@@ -14,6 +14,7 @@
   if ($deleteSpecialist->execute()) {
     $messageDeleteSpecialist = 'Successfully deleted Clinic';
     header('Location: /proyecto_termina_I/specialistManagement.php');
+            // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
   } else {
     $messageDeleteSpecialist = 'Sorry there must have been an issue creating your client';
   }

@@ -142,3 +142,17 @@ function clinicFunctionValidation() {
     return false;
   }
 }
+
+function loginValitadion() {
+  let email = getElementById('email').value;
+  let password = getElementById('password').value;
+  let emailExpression = /\w+@\w+\.+[a-z]/;
+
+  if (email === '' || password === '') {
+    alert('Todos los datos son requeridos');
+    return false;
+  } else if (!email.test(emailExpression)) {
+    alert('El correo no es valido');
+    return false;
+  }
+}

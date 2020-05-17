@@ -3,6 +3,7 @@
   require 'database.php';
 
   $message = '';
+  $onEdit = false;
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $sql = "INSERT INTO users (email, password, name, fatherLastName, motherLastName, phone) VALUES (:email, :password, :name, :fatherLastName, :motherLastName, :phone)";
@@ -15,12 +16,19 @@
     $stmt->bindParam(':motherLastName', $_POST['motherLastName']);
     $stmt->bindParam(':phone', $_POST['phone']);
 
-    if ($stmt->execute()) {
-      $message = 'Successfully created new specialist';
-    } else {
-      $message = 'Sorry there must have been an issue creating the account';
+    if (!$stmt->execute()) {
+      $message = 'Lo sentimos, tuvimos problemas al crear al especialista';
     }
   }
+
+
+function editSpecialist() {
+  $onEdit = true;
+  if ($onEdit == true) {
+
+  }
+}
+
 ?>
 
 
@@ -56,7 +64,7 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
+                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a> <a href="editSpecialist.php?id=<?php echo $row['id']; ?>">Editar</a></td>
                 </tr>
           <?php 
               } 

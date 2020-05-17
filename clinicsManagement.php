@@ -67,7 +67,6 @@
     <?php endif; ?>
 
     <div class="specialistRegistry">
-      <h1>Clinics registry</h1>
       <form onsubmit="return clinicFunctionValidation();" action="clinicsManagement.php" method="POST" required>
         <input id='name' name="name" type="text" placeholder="Nombre de la clínica" required>
         <input id='address' name="address" type="text" placeholder="Direccíon" required>

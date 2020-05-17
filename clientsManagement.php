@@ -55,7 +55,11 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['completeName']; ?> <a href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
+                  <td>  
+                    <?php echo $row['completeName']; ?> 
+                    <a href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    <a href="editClient.php?id=<?php echo $row['id']; ?>">Editar</a>
+                  </td>
                 </tr>
           <?php 
               } 

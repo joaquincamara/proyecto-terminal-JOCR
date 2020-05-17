@@ -52,13 +52,15 @@
     <div class="appContainer">
       <div class="loginCard">
         <h1>Login</h1>
-        <span>or <a href="signup.php">SignUp</a></span>
-        <form action="index.php" method="POST">
-          <input name="email" type="text" placeholder="Enter your email">
-          <input name="password" type="password" placeholder="Enter your Password">
+        <span>o <a href="signup.php">SignUp</a></span>
+        <form onsubmit="return loginValitadion();" action="index.php" method="POST">
+          <input id="email"  name="email" type="text" placeholder="Correo electrónico" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" required>
+          <input id="password" name="password" type="password" placeholder="Constraseña" required>
           <input type="submit" value="Submit">
         </form>
       </div>
     </div>
+
+    <script src="validateForms.js"></script>
   </body>
 </html>
