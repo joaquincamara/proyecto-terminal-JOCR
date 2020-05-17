@@ -28,7 +28,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SignUp</title>
+    <title>S.I.C.E.</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -47,7 +47,7 @@
       <table id="clients-table">
         <thead>
           <tr>
-            <th scope="col">Specialists</th>
+            <th scope="col">Especialista</th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
                 </tr>
           <?php 
               } 
@@ -67,18 +67,19 @@
     <?php endif; ?>
 
     <div class="specialistRegistry">
-      <h1>Specialist registry</h1>
-      <form action="superAdminDashboard.php" method="POST">
-        <input name="name" type="text" placeholder="Enter your name">
-        <input name="fatherLastName" type="text" placeholder="Enter your father Lastname">
-        <input name="motherLastName" type="text" placeholder="Enter your mother Lastname">
-        <input name="phone" type="text" placeholder="Enter your phone">
-        <input name="email" type="text" placeholder="Enter your email">
-        <input name="password" type="password" placeholder="Enter your Password">
-        <input name="confirm_password" type="password" placeholder="Confirm Password">
-        <input type="submit" value="Submit">
+      <form onsubmit="return formSignInValidations();" action="specialistManagement.php" method="POST">
+      <input id="name"  name="name" type="text" placeholder="Nombre" required>
+          <input id="fatherLastName" name="fatherLastName" type="text" placeholder="Apellido paterno" required>
+          <input id="motherLastName" name="motherLastName" type="text" placeholder="Apellido materno" required>
+          <input id="phone" name="phone" type="text" placeholder="Teléfono" required>
+          <input pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"  id="email" name="email" type="text" placeholder="Correo electrónico" required>
+          <input id="password" name="password" type="password" placeholder="Constraseña" required>
+          <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirmar constraseña"required>
+          <input type="submit" value="Guardar especialista">
       </form>
     </div>
   </div>
+
+  <script src="validateForms.js"></script>
 </body>
 </html>

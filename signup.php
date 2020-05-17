@@ -17,7 +17,7 @@
 
     if ($stmt->execute()) {
       $message = 'Successfully created new user. Go to Login to start the magic!!!';
-      mail('joaquin.camara.rivera@gmail.com','prueba undam',$message);
+      mail($_POST['email'],'Registro en S.I.C.E.',$message);
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }
@@ -27,7 +27,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SignUp</title>
+    <title>S.I.C.E.</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
@@ -42,14 +42,14 @@
       <div class="signUpCard">
         <h1>SignUp</h1>
         <span>or <a href="index.php">Login</a></span>
-        <form onsubmit="return formSignInValidations();" action="signup.php" method="POST" required>
-          <input id="name"  name="name" type="text" placeholder="Ingresa un nombre" required>
-          <input id="fatherLastName" name="fatherLastName" type="text" placeholder="Ingresa el primer apellido" required>
-          <input id="motherLastName" name="motherLastName" type="text" placeholder="Ingresa el segundo apellido" required>
-          <input id="phone" name="phone" type="text" placeholder="Enter your phone" required>
-          <input pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Ingresa un correo valido." id="email" name="email" type="text" placeholder="Ingresa un corrreo electronico" required>
-          <input id="password" name="password" type="password" placeholder="Ingresa una constraseña" required>
-          <input id="confirm_password" name="confirm_password" type="password" placeholder="Ingresa una constraseña"required>
+        <form onsubmit="return formSignInValidations();" action="signup.php" method="POST">
+          <input id="name"  name="name" type="text" placeholder="Nombre" required>
+          <input id="fatherLastName" name="fatherLastName" type="text" placeholder="Apellido paterno" required>
+          <input id="motherLastName" name="motherLastName" type="text" placeholder="Apellido materno" required>
+          <input id="phone" name="phone" type="text" placeholder="Teléfono" required>
+          <input pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"  id="email" name="email" type="text" placeholder="Correo electrónico" required>
+          <input id="password" name="password" type="password" placeholder="Constraseña" required>
+          <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirmar constraseña"required>
           <input type="submit" value="Registrar">
         </form>
       </div>

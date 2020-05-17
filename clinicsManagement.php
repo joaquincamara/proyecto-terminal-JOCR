@@ -28,7 +28,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SignUp</title>
+    <title>S.I.C.E.</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -47,7 +47,7 @@
       <table id="clients-table">
         <thead>
           <tr>
-            <th scope="col">Clinics</th>
+            <th scope="col">Clínicas</th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['name']; ?> <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                  <td>  <?php echo $row['name']; ?> <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
                 </tr>
           <?php 
               } 
@@ -68,17 +68,19 @@
 
     <div class="specialistRegistry">
       <h1>Clinics registry</h1>
-      <form action="clinicsAdminDasboard.php" method="POST">
-        <input name="name" type="text" placeholder="Clinic name">
-        <input name="address" type="text" placeholder="Clinic address">
-        <input name="rfc" type="text" placeholder="RFC">
-        <input name="phone" type="text" placeholder="Enter your phone">
-        <input name="email" type="text" placeholder="Enter your email">
-        <input name="password" type="password" placeholder="Enter your Password">
-        <input name="confirm_password" type="password" placeholder="Confirm Password">
-        <input type="submit" value="Submit">
+      <form onsubmit="return clinicFunctionValidation();" action="clinicsManagement.php" method="POST" required>
+        <input id='name' name="name" type="text" placeholder="Nombre de la clínica" required>
+        <input id='address' name="address" type="text" placeholder="Direccíon" required>
+        <input id='rfc' name="rfc" type="text" placeholder="RFC" required>
+        <input id="phone" name="phone" type="text" placeholder="Teléfono" required>
+          <input pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"  id="email" name="email" type="text" placeholder="Correo electrónico" required>
+          <input id="password" name="password" type="password" placeholder="Constraseña" required>
+          <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirmar constraseña"required>
+        <input type="submit" value="Guardar Clínica">
       </form>
     </div>
   </div>
+
+  <script src="validateForms.js"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SignUp</title>
+    <title>S.I.C.E.</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -46,7 +46,7 @@
       <table id="clients-table">
         <thead>
           <tr>
-            <th scope="col">Clients</th>
+            <th scope="col">Clientes</th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +55,7 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['completeName']; ?> <a href="deleteClient.php?id=<?php echo $row['id']; ?>">DELETE</a></td>
+                  <td>  <?php echo $row['completeName']; ?> <a href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
                 </tr>
           <?php 
               } 
@@ -66,28 +66,29 @@
     <?php endif; ?>
 
     <div class="clientRegistryContainer">
-      <form action="clientsManagement.php" method="POST">
+      <form onsubmit="return clientRegistryValidations();" action="clientsManagement.php" method="POST">
         
         <div class="clientRegistryInputsSection">
           <div class="clientRegistryInputsSection-box1">
-            <input placeholder="Complete name" name="completeName" type="text" id="completeName" >
-            <input placeholder="Email" name="email" type="text" id="email" >
-            <input placeholder="Phone" name="phone" type="text" id="phone" >
+            <input required id="completeName" placeholder="Nombre completo" name="completeName" type="text" >
+            <input required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" id="email" placeholder="Correo electrónico" name="email" type="text" id="email" >
+            <input required id="phone" placeholder="Teléfono celular" name="phone" type="text" id="phone" >
           </div>
           <div class="clientRegistryInputsSection-box2">
-            <input placeholder="Reason for visit" name="reasonForVisit" type="text" id="reasonForVisit" >
-            <input placeholder="Start treatment date" name="startTreatmentDate" type="text" id="startTreatmentDate" >
-            <input placeholder="End treatment date" name="endTreatmentDate" type="text" id="endTreatmentDate" >
+            <input required id="reasonForVisit" placeholder="Razón de visita" name="reasonForVisit" type="text" >
+            <input required id="startTreatmentDate" placeholder="Inicio de tratamiento" name="startTreatmentDate" type="text"  >
+            <input required id="endTreatmentDate" placeholder="Fin de tratamiento" name="endTreatmentDate" type="text" >
           </div>
         </div>
 
         <div class="clientRegistryTextareaSection">
-          <textarea placeholder="Treatment" name="treatment" id="treatment" rows="8"></textarea>
-          <textarea placeholder="Prescription Drugs" name="prescriptionDrugs" id="prescriptionDrugs" rows="8"></textarea>
-          <input type="submit" value="Submit">
+          <textarea required id="treatment" placeholder="Descripción de tratamiento" name="treatment"  rows="8"></textarea>
+          <textarea required id="prescriptionDrugs" placeholder="Medicamentos" name="prescriptionDrugs"  rows="8"></textarea>
+          <input required type="submit" value="Guardar cliente">
         </div>
       </form>
     </div>
   </div>
+  <script src="validateForms.js"></script>
 </body>
 </html>

@@ -17,10 +17,10 @@
 
       <?php if(!empty($inicio['usertype'] == 'superAdmin')): ?>
         <li class='navbarItem' >
-          <a href="superAdminDashboard.php" >Resgistro de especialistas</a>
+          <a href="  specialistManagement.php" >Resgistro de especialistas</a>
         </li>
         <li class='navbarItem' >
-          <a href="clinicsAdminDasboard.php" >Registro de clinicas</a>
+          <a href="clinicsManagement.php" >Registro de clinicas</a>
         </li>
       <?php endif; ?>
 

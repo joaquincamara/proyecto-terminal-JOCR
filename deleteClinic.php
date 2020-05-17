@@ -13,7 +13,7 @@
    
   if ($deleteClinic->execute()) {
     $messageDeleteClinic = 'Successfully deleted Clinic';
-    header('Location: /proyecto_termina_I/clinicsAdminDasboard.php');
+    header('Location: /proyecto_termina_I/clinicsManagement.php');
   } else {
     $messageDeleteClinic = 'Sorry there must have been an issue creating your client';
   }
