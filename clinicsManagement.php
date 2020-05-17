@@ -15,9 +15,7 @@
     $stmt->bindParam(':rfc', $_POST['rfc']);
     $stmt->bindParam(':phone', $_POST['phone']);
 
-    if ($stmt->execute()) {
-      $message = 'Successfully created new specialist';
-    } else {
+    if (!$stmt->execute()) {
       $message = 'Sorry there must have been an issue creating the account';
     }
   }
@@ -56,7 +54,11 @@
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['name']; ?> <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a></td>
+                  <td>  
+                    <?php echo $row['name']; ?> 
+                    <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    <a href="editClinic.php?id=<?php echo $row['id']; ?>">Editar</a>
+                    </td>
                 </tr>
           <?php 
               } 
@@ -67,7 +69,7 @@
     <?php endif; ?>
 
     <div class="specialistRegistry">
-      <form onsubmit="return clinicFunctionValidation();" action="clinicsManagement.php" method="POST" required>
+      <form onsubmit="return clinicFunctionValidation();" action="clinicsManagement.php" method="POST">
         <input id='name' name="name" type="text" placeholder="Nombre de la clínica" required>
         <input id='address' name="address" type="text" placeholder="Direccíon" required>
         <input id='rfc' name="rfc" type="text" placeholder="RFC" required>

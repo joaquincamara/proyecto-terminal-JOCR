@@ -65,7 +65,7 @@
               {
           ?>
       <form onsubmit="return formSignInValidations();" action="editSpecialist.php">
-        <input type="hidden" name="txtId" value="<?php echo $specialisToResult['id'] ?>"'>
+        <input type="hidden" name="txtId" value="<?php echo $specialisToResult['id'] ?>">
         <input value="<?php echo $specialisToResult['name'] ?>" id="name"  name="txtName" type="text" placeholder="Nombre" required>
         <input value="<?php echo $specialisToResult['fatherLastName'] ?>" id="fatherLastName" name="txtFatherLastName" type="text" placeholder="Apellido paterno" required>
         <input value="<?php echo $specialisToResult['motherLastName'] ?>" id="motherLastName" name="txtMotherLastName" type="text" placeholder="Apellido materno" required>
