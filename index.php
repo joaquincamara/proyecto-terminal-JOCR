@@ -21,11 +21,11 @@
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
-   // production 
-  // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
-   // Develop
 
-   header('Location: /proyecto_termina_I/clientsManagement.php');
+  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
+
+
+   //header('Location: /proyecto_termina_I/clientsManagement.php');
 
     } else {
       $message = 'Sorry, those credentials do not match';
@@ -56,7 +56,7 @@
         <form onsubmit="return loginValitadion();" action="index.php" method="POST">
           <input id="email"  name="email" type="text" placeholder="Correo electrónico" pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" required>
           <input id="password" name="password" type="password" placeholder="Constraseña" required>
-          <input type="submit" value="Submit">
+          <input type="submit" value="Ingresar">
         </form>
       </div>
     </div>

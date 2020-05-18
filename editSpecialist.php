@@ -64,7 +64,7 @@
             while($specialisToResult = $specialisToEditRecord->fetch(PDO::FETCH_ASSOC))
               {
           ?>
-      <form onsubmit="return formSignInValidations();" action="editSpecialist.php">
+      <form >
         <input type="hidden" name="txtId" value="<?php echo $specialisToResult['id'] ?>">
         <input value="<?php echo $specialisToResult['name'] ?>" id="name"  name="txtName" type="text" placeholder="Nombre" required>
         <input value="<?php echo $specialisToResult['fatherLastName'] ?>" id="fatherLastName" name="txtFatherLastName" type="text" placeholder="Apellido paterno" required>
@@ -88,7 +88,7 @@
       $phoneToEdit = $_GET['txtPhone'];
       $emailToEdit = $_GET['txtEmail'];
 
-      if(!empty($nameToEdit)) {
+      if($nameToEdit != null) {
       $editSpecialist = $conn->prepare('UPDATE users SET name=:name, fatherLastName=:fatherLastName, motherLastName=:motherLastName, phone=:phone, email=:email  WHERE id=:id');
       $editSpecialist->bindParam(':id', $idToEdit,PDO::PARAM_INT);
       $editSpecialist->bindParam(':name', $nameToEdit);
@@ -97,10 +97,10 @@
       $editSpecialist->bindParam(':phone', $phoneToEdit);
       $editSpecialist->bindParam(':email', $emailToEdit);
       if ($editSpecialist->execute()) {
-        header('Location: /proyecto_termina_I/specialistManagement.php');
-        // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
+      // header('Location: /proyecto_termina_I/specialistManagement.php');
+         header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
       }
-      }
+      } 
     ?>
     </div>
   </div>

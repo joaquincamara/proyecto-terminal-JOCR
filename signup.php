@@ -1,8 +1,9 @@
 <?php
 
   require 'database.php';
-
-  $message = '';
+  require 'registryTemplate.php';
+  $message = '
+  ';
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $sql = "INSERT INTO users (email, password, name, fatherLastName, motherLastName, phone) VALUES (:email, :password, :name, :fatherLastName, :motherLastName, :phone)";
@@ -16,9 +17,12 @@
     $stmt->bindParam(':phone', $_POST['phone']);
 
     if ($stmt->execute()) {
-      $message = 'Successfully created new user. Go to Login to start the magic!!!';
-      mail($_POST['email'],'Registro en S.I.C.E.',$message);
-
+      $headers = 'MIME-Version: 1.0' . "\r\n";;
+      $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+      $message = $registryTemplate;
+      mail($_POST['email'],'Registro en S.I.C.E.',$message, $headers);
+     // header('Location: /proyecto_termina_I/registryThanks.php');
+       header('Location: https://proyecto-terminal-jocr.000webhostapp.com/registryThanks.php');
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }

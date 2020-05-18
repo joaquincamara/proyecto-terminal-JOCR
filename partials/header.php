@@ -25,14 +25,14 @@
       <?php endif; ?>
 
       <li class='navbarItem' >
-        <a href="logout.php" >Logout</a>
+        <a href="logout.php" >Salir</a>
       </li>
     <?php else: ?>
       <li class='navbarItem' >
-        <a href="index.php">Login</a>
+        <a href="index.php">Ingresar</a>
       </li>
       <li class='navbarItem' >
-        <a href="signup.php">SignUp</a>
+        <a href="signup.php">Registrarse</a>
       </li>
     <?php endif; ?>
   </ul>

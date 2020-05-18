@@ -63,7 +63,7 @@
             while($clinicToResult = $clinicToEditRecord->fetch(PDO::FETCH_ASSOC))
               {
           ?>
-      <form onsubmit="return clinicFunctionValidation();" action="editClinic.php" >
+      <form>
       <input type="hidden" name="id" value="<?php echo $clinicToResult['id'] ?>">
         <input value="<?php echo $clinicToResult['name'] ?>" id='name' name="name" type="text" placeholder="Nombre de la clínica" required>
         <input value="<?php echo $clinicToResult['address'] ?>" id='address' name="address" type="text" placeholder="Direccíon" required>
@@ -86,7 +86,7 @@
       $phone = $_GET['phone'];
       $email = $_GET['email'];
 
-      if(!empty($name)) {
+      if($name != null) {
       $editSpecialist = $conn->prepare('UPDATE clinic SET name=:name, address=:address, rfc=:rfc, phone=:phone, email=:email  WHERE id=:id');
       $editSpecialist->bindParam(':id', $id,PDO::PARAM_INT);
       $editSpecialist->bindParam(':name', $name);
@@ -95,10 +95,10 @@
       $editSpecialist->bindParam(':phone', $phone);
       $editSpecialist->bindParam(':email', $email);
       if ($editSpecialist->execute()) {
-        header('Location: /proyecto_termina_I/clinicsManagement.php');
-        // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
+     //header('Location: /proyecto_termina_I/clinicsManagement.php');
+        header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
       }
-      }
+      } 
     ?>
     </div>
   </div>

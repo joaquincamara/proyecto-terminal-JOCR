@@ -2,19 +2,19 @@
 
 // Production
 
-/*
+
 $server = 'localhost';
 $username = 'id12895322_proyectofinal';
 $password = 'Joaquincr__123';
 $database = 'id12895322_proyectoterminal';
-*/
+
 
 
 // Develop
-$server = 'localhost:8889';
-$username = 'root';
-$password = 'root';
-$database = 'tarea';
+//$server = 'localhost:8889';
+//$username = 'root';
+//$password = 'root';
+//$database = 'tarea';
 
 
 
