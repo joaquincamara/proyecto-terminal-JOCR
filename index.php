@@ -22,10 +22,10 @@
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
 
-  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
+  //header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
 
 
-   //header('Location: /proyecto_termina_I/clientsManagement.php');
+   header('Location: /proyecto_termina_I/clientsManagement.php');
 
     } else {
       $message = 'Sorry, those credentials do not match';

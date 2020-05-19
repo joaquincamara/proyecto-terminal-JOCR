@@ -13,8 +13,8 @@
    
   if ($deleteClinic->execute()) {
     $messageDeleteClinic = 'Successfully deleted Clinic';
-   // header('Location: /proyecto_termina_I/clinicsManagement.php');
-        header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
+    header('Location: /proyecto_termina_I/clinicsManagement.php');
+   //     header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
   } else {
     $messageDeleteClinic = 'Sorry there must have been an issue creating your client';
   }

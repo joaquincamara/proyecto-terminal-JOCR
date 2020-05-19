@@ -8,6 +8,28 @@
   $clinicToEditRecord->bindParam(':id', $id,PDO::PARAM_INT);
   $clinicToEditRecord->execute();
 
+
+  if (!empty($_POST)) {
+  $name = $_POST['name'];
+  $address = $_POST['address'];
+  $rfc = $_POST['rfc'];
+  $phone = $_POST['phone'];
+  $email = $_POST['email'];
+
+  if($name != null) {
+  $editSpecialist = $conn->prepare('UPDATE clinic SET name=:name, address=:address, rfc=:rfc, phone=:phone, email=:email  WHERE id=:id');
+  $editSpecialist->bindParam(':id', $id,PDO::PARAM_INT);
+  $editSpecialist->bindParam(':name', $name);
+  $editSpecialist->bindParam(':address', $address);
+  $editSpecialist->bindParam(':rfc', $rfc);
+  $editSpecialist->bindParam(':phone', $phone);
+  $editSpecialist->bindParam(':email', $email);
+    if ($editSpecialist->execute()) {
+      header('Location: /proyecto_termina_I/clinicsManagement.php');
+     // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
+    }
+   } 
+}
 ?>
 
 
@@ -43,10 +65,14 @@
               {
           ?>
                 <tr>
-                  <td>  
-                    <?php echo $row['name']; ?> 
-                    <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a>
-                    <a href="editClinic.php?id=<?php echo $row['id']; ?>">Editar</a>
+                  <td>
+                    <div> 
+                      <p><?php echo $row['name']; ?></p>
+                    </div>
+                    <div>
+                      <a class="editTableButton" href="editClinic.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton"  href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    </div>
                     </td>
                 </tr>
           <?php 
@@ -54,6 +80,16 @@
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 
@@ -63,7 +99,7 @@
             while($clinicToResult = $clinicToEditRecord->fetch(PDO::FETCH_ASSOC))
               {
           ?>
-      <form>
+      <form method="POST">
       <input type="hidden" name="id" value="<?php echo $clinicToResult['id'] ?>">
         <input value="<?php echo $clinicToResult['name'] ?>" id='name' name="name" type="text" placeholder="Nombre de la clínica" required>
         <input value="<?php echo $clinicToResult['address'] ?>" id='address' name="address" type="text" placeholder="Direccíon" required>
@@ -78,31 +114,8 @@
         ?>
     <?php endif; ?>
 
-    <?php
-      $id = $_GET['id'];
-      $name = $_GET['name'];
-      $address = $_GET['address'];
-      $rfc = $_GET['rfc'];
-      $phone = $_GET['phone'];
-      $email = $_GET['email'];
-
-      if($name != null) {
-      $editSpecialist = $conn->prepare('UPDATE clinic SET name=:name, address=:address, rfc=:rfc, phone=:phone, email=:email  WHERE id=:id');
-      $editSpecialist->bindParam(':id', $id,PDO::PARAM_INT);
-      $editSpecialist->bindParam(':name', $name);
-      $editSpecialist->bindParam(':address', $address);
-      $editSpecialist->bindParam(':rfc', $rfc);
-      $editSpecialist->bindParam(':phone', $phone);
-      $editSpecialist->bindParam(':email', $email);
-      if ($editSpecialist->execute()) {
-     //header('Location: /proyecto_termina_I/clinicsManagement.php');
-        header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
-      }
-      } 
-    ?>
     </div>
   </div>
-
   <script src="validateForms.js"></script>
 </body>
 </html>

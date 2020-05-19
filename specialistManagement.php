@@ -15,7 +15,8 @@
     $stmt->bindParam(':fatherLastName', $_POST['fatherLastName']);
     $stmt->bindParam(':motherLastName', $_POST['motherLastName']);
     $stmt->bindParam(':phone', $_POST['phone']);
-
+    header('Location: /proyecto_termina_I/specialistManagement.php');
+    //   header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
     if (!$stmt->execute()) {
       $message = 'Lo sentimos, tuvimos problemas al crear al especialista';
     }
@@ -64,13 +65,31 @@ function editSpecialist() {
               {
           ?>
                 <tr>
-                  <td>  <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a> <a href="editSpecialist.php?id=<?php echo $row['id']; ?>">Editar</a></td>
+                  <td>
+                    <div>
+                      <p><?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> </p>
+                    </div>  
+                    <div>
+                      <a class="editTableButton" href="editSpecialist.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton" href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a>                     
+                      </div>        
+                  </td>        
                 </tr>
           <?php 
               } 
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 

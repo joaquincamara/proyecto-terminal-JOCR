@@ -14,7 +14,8 @@
     $stmt->bindParam(':prescriptionDrugs', $_POST['prescriptionDrugs']);
     $stmt->bindParam(':startTreatmentDate', $_POST['startTreatmentDate']);
     $stmt->bindParam(':endTreatmentDate', $_POST['endTreatmentDate']);
-
+    header('Location: /proyecto_termina_I/clientsManagement.php');
+    //  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
     if (!$stmt->execute()) {
         $message = 'Sorry there must have been an issue creating your client';
       }
@@ -55,10 +56,14 @@
               {
           ?>
                 <tr>
-                  <td>  
-                    <?php echo $row['completeName']; ?> 
-                    <a href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a>
-                    <a href="editClient.php?id=<?php echo $row['id']; ?>">Editar</a>
+                  <td>
+                    <div>
+                      <p><?php echo $row['completeName']; ?></p>
+                    </div>
+                    <div>
+                    <a class="editTableButton" href="editClient.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton" href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    </div>
                   </td>
                 </tr>
           <?php 
@@ -66,6 +71,16 @@
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+         <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 

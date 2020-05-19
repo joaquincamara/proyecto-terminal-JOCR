@@ -11,8 +11,8 @@
    
   if ($deleteClient->execute()) {
     $messagedeleteClient = 'Successfully deleted client';
-    //header('Location: /proyecto_termina_I/clientsManagement.php');
-    header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
+    header('Location: /proyecto_termina_I/clientsManagement.php');
+    //header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
   } else {
     $messagedeleteClient = 'Sorry there must have been an issue creating your client';
   }

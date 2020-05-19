@@ -5,7 +5,7 @@
 
   session_destroy();
 
- header('Location: https://proyecto-terminal-jocr.000webhostapp.com/');
+ //header('Location: https://proyecto-terminal-jocr.000webhostapp.com/');
 
- //header('Location: /proyecto_termina_I/');
+ header('Location: /proyecto_termina_I/');
 ?>

@@ -21,8 +21,8 @@
       $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
       $message = $registryTemplate;
       mail($_POST['email'],'Registro en S.I.C.E.',$message, $headers);
-     // header('Location: /proyecto_termina_I/registryThanks.php');
-       header('Location: https://proyecto-terminal-jocr.000webhostapp.com/registryThanks.php');
+      header('Location: /proyecto_termina_I/registryThanks.php');
+     //  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/registryThanks.php');
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }

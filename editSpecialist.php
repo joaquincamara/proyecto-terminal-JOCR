@@ -8,6 +8,29 @@
   $specialisToEditRecord->bindParam(':id', $id,PDO::PARAM_INT);
   $specialisToEditRecord->execute();
 
+  if (!empty($_POST)) {
+
+    $nameToEdit = $_POST['txtName'];
+    $fatherLastNameToEdit = $_POST['txtFatherLastName'];
+    $motherLastNameToEdit = $_POST['txtMotherLastName'];
+    $phoneToEdit = $_POST['txtPhone'];
+    $emailToEdit = $_POST['txtEmail'];
+
+    if($nameToEdit != null) {
+    $editSpecialist = $conn->prepare('UPDATE users SET name=:name, fatherLastName=:fatherLastName, motherLastName=:motherLastName, phone=:phone, email=:email  WHERE id=:id');
+    $editSpecialist->bindParam(':id', $id,PDO::PARAM_INT);
+    $editSpecialist->bindParam(':name', $nameToEdit);
+    $editSpecialist->bindParam(':fatherLastName', $fatherLastNameToEdit);
+    $editSpecialist->bindParam(':motherLastName', $motherLastNameToEdit);
+    $editSpecialist->bindParam(':phone', $phoneToEdit);
+    $editSpecialist->bindParam(':email', $emailToEdit);
+    if ($editSpecialist->execute()) {
+     header('Location: /proyecto_termina_I/specialistManagement.php');
+    //   header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
+    }
+    } 
+  }
+
 ?>
 
 
@@ -43,18 +66,31 @@
               {
           ?>
                 <tr>
-                  <td>  
-                    <?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> 
-                    <?php echo $row['motherLastName']; ?> 
-                    <a href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a> 
-                    <a href="editSpecialist.php?id=<?php echo $row['id']; ?>">Editar</a>
-                  </td>
+                  <td>
+                    <div>
+                      <p><?php echo $row['name']; ?> <?php echo $row['fatherLastName']; ?> <?php echo $row['motherLastName']; ?> </p>
+                    </div>  
+                    <div>
+                      <a class="editTableButton" href="editSpecialist.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton" href="deleteSpecialist.php?id=<?php echo $row['id']; ?>">Borrar</a>                     
+                    </div>  
+                    </td>              
                 </tr>
           <?php 
               } 
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 
@@ -64,7 +100,7 @@
             while($specialisToResult = $specialisToEditRecord->fetch(PDO::FETCH_ASSOC))
               {
           ?>
-      <form >
+      <form method="POST">
         <input type="hidden" name="txtId" value="<?php echo $specialisToResult['id'] ?>">
         <input value="<?php echo $specialisToResult['name'] ?>" id="name"  name="txtName" type="text" placeholder="Nombre" required>
         <input value="<?php echo $specialisToResult['fatherLastName'] ?>" id="fatherLastName" name="txtFatherLastName" type="text" placeholder="Apellido paterno" required>
@@ -80,28 +116,6 @@
         ?>
     <?php endif; ?>
 
-    <?php
-      $idToEdit = $_GET['txtId'];
-      $nameToEdit = $_GET['txtName'];
-      $fatherLastNameToEdit = $_GET['txtFatherLastName'];
-      $motherLastNameToEdit = $_GET['txtMotherLastName'];
-      $phoneToEdit = $_GET['txtPhone'];
-      $emailToEdit = $_GET['txtEmail'];
-
-      if($nameToEdit != null) {
-      $editSpecialist = $conn->prepare('UPDATE users SET name=:name, fatherLastName=:fatherLastName, motherLastName=:motherLastName, phone=:phone, email=:email  WHERE id=:id');
-      $editSpecialist->bindParam(':id', $idToEdit,PDO::PARAM_INT);
-      $editSpecialist->bindParam(':name', $nameToEdit);
-      $editSpecialist->bindParam(':fatherLastName', $fatherLastNameToEdit);
-      $editSpecialist->bindParam(':motherLastName', $motherLastNameToEdit);
-      $editSpecialist->bindParam(':phone', $phoneToEdit);
-      $editSpecialist->bindParam(':email', $emailToEdit);
-      if ($editSpecialist->execute()) {
-      // header('Location: /proyecto_termina_I/specialistManagement.php');
-         header('Location: https://proyecto-terminal-jocr.000webhostapp.com/specialistManagement.php');
-      }
-      } 
-    ?>
     </div>
   </div>
 

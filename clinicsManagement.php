@@ -14,7 +14,8 @@
     $stmt->bindParam(':address', $_POST['address']);
     $stmt->bindParam(':rfc', $_POST['rfc']);
     $stmt->bindParam(':phone', $_POST['phone']);
-
+    header('Location: /proyecto_termina_I/clinicsManagement.php');
+    // header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
     if (!$stmt->execute()) {
       $message = 'Sorry there must have been an issue creating the account';
     }
@@ -54,10 +55,14 @@
               {
           ?>
                 <tr>
-                  <td>  
-                    <?php echo $row['name']; ?> 
-                    <a href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a>
-                    <a href="editClinic.php?id=<?php echo $row['id']; ?>">Editar</a>
+                  <td>
+                    <div> 
+                      <p><?php echo $row['name']; ?></p>
+                    </div>
+                    <div>
+                      <a class="editTableButton"  href="editClinic.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton"  href="deleteClinic.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    </div>
                     </td>
                 </tr>
           <?php 
@@ -65,6 +70,16 @@
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 

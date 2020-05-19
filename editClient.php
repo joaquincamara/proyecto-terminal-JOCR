@@ -7,8 +7,37 @@
   $clientToEditRecord = $conn ->prepare('SELECT * FROM clients WHERE id=:id');
   $clientToEditRecord->bindParam(':id', $id,PDO::PARAM_INT);
   $clientToEditRecord->execute();
-?>
 
+ if (!empty($_POST)) {
+  $completeName = $_POST['completeName'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $reasonForVisit = $_POST['reasonForVisit'];
+  $startTreatmentDate = $_POST['startTreatmentDate'];
+  $endTreatmentDate = $_POST['endTreatmentDate'];
+  $treatment = $_POST['treatment'];
+  $prescriptionDrugs = $_POST['prescriptionDrugs'];
+
+  if($completeName != null) {
+    $editClient = $conn->prepare('UPDATE clients SET completeName=:completeName, email=:email, phone=:phone, reasonForVisit=:reasonForVisit, startTreatmentDate=:startTreatmentDate, endTreatmentDate=:endTreatmentDate, treatment=:treatment, prescriptionDrugs=:prescriptionDrugs WHERE id=:id');
+    $editClient->bindParam(':id', $id,PDO::PARAM_INT);
+    $editClient->bindParam(':completeName', $completeName);
+    $editClient->bindParam(':email', $email);
+    $editClient->bindParam(':phone', $phone);
+    $editClient->bindParam(':reasonForVisit', $reasonForVisit);
+    $editClient->bindParam(':startTreatmentDate', $startTreatmentDate);
+    $editClient->bindParam(':endTreatmentDate', $endTreatmentDate);
+    $editClient->bindParam(':treatment', $treatment);
+    $editClient->bindParam(':prescriptionDrugs', $prescriptionDrugs);
+  
+    if ($editClient->execute()) {
+      header('Location: /proyecto_termina_I/clientsManagement.php');
+     //  header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
+    } 
+  } 
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +71,14 @@
               {
           ?>
                 <tr>
-                  <td>  
-                    <?php echo $row['completeName']; ?> 
-                    <a href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a>
-                    <a href="editClient.php?id=<?php echo $row['id']; ?>">Editar</a>
+                  <td>
+                    <div>
+                      <p><?php echo $row['completeName']; ?></p>
+                    </div>
+                    <div>
+                    <a class="editTableButton" href="editClient.php?id=<?php echo $row['id']; ?>">Editar</a>
+                      <a class="DeleteTableButton" href="deleteClient.php?id=<?php echo $row['id']; ?>">Borrar</a>
+                    </div>
                   </td>
                 </tr>
           <?php 
@@ -53,6 +86,16 @@
           ?>
         </tbody>
         </table>
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#" class="active"> 1</a>
+          <a href="#" >2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a href="#">&raquo;</a>
+        </div>
     </div>
     <?php endif; ?>
 
@@ -63,7 +106,7 @@
             while($clientToResult = $clientToEditRecord->fetch(PDO::FETCH_ASSOC))
               {
           ?>
-      <form>
+      <form method="POST">
         <div class="clientRegistryInputsSection">
 
           <div class="clientRegistryInputsSection-box1">
@@ -91,35 +134,6 @@
               } 
         ?>
     <?php endif; ?>
-
-    <?php
-      $id = $_GET['id'];
-      $completeName = $_GET['completeName'];
-      $email = $_GET['email'];
-      $phone = $_GET['phone'];
-      $reasonForVisit = $_GET['reasonForVisit'];
-      $startTreatmentDate = $_GET['startTreatmentDate'];
-      $endTreatmentDate = $_GET['endTreatmentDate'];
-      $treatment = $_GET['treatment'];
-      $prescriptionDrugs = $_GET['prescriptionDrugs'];
-      if($completeName != null) {
-        $editClient = $conn->prepare('UPDATE clients SET completeName=:completeName, email=:email, phone=:phone, reasonForVisit=:reasonForVisit, startTreatmentDate=:startTreatmentDate, endTreatmentDate=:endTreatmentDate, treatment=:treatment, prescriptionDrugs=:prescriptionDrugs WHERE id=:id');
-        $editClient->bindParam(':id', $id,PDO::PARAM_INT);
-        $editClient->bindParam(':completeName', $completeName);
-        $editClient->bindParam(':email', $email);
-        $editClient->bindParam(':phone', $phone);
-        $editClient->bindParam(':reasonForVisit', $reasonForVisit);
-        $editClient->bindParam(':startTreatmentDate', $startTreatmentDate);
-        $editClient->bindParam(':endTreatmentDate', $endTreatmentDate);
-        $editClient->bindParam(':treatment', $treatment);
-        $editClient->bindParam(':prescriptionDrugs', $prescriptionDrugs);
-      
-        if ($editClient->execute()) {
-         // header('Location: /proyecto_termina_I/clientsManagement.php');
-           header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clientsManagement.php');
-        } 
-      } 
-    ?>
     </div>
   </div>
   <script src="validateForms.js"></script>
