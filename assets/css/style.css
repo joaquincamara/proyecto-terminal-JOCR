@@ -500,7 +500,7 @@ div#calendar div.header a.next {
   right: 0px;
 }
 
-/*******************************Calendar Content Cells*********************************/
+/* cells */
 div#calendar div.box-content {
   border: 1px solid #787878;
   border-top: none;
@@ -606,6 +606,7 @@ div.clear {
 
 .scheduleCreatorAndTableContainer {
   display: flex;
+  flex-direction: row;
 }
 
 .calendarContainer {
@@ -613,10 +614,24 @@ div.clear {
 }
 
 .scheduleCreator {
-  height: 440;
+  height: 680px;
   display: flex;
   padding: 15px;
   background: #fff;
   border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.meetsTableContainer {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 350px;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  background: #fff;
+  border-radius: 20px;
+  height: 500px !important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }

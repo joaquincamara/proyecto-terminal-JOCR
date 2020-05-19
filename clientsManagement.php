@@ -103,7 +103,7 @@
         <div class="clientRegistryTextareaSection">
           <textarea required id="treatment" placeholder="Descripción de tratamiento" name="treatment"  rows="8"></textarea>
           <textarea required id="prescriptionDrugs" placeholder="Medicamentos" name="prescriptionDrugs"  rows="8"></textarea>
-          <input required type="submit" value="Guardar cliente">
+          <input  type="submit" value="Guardar cliente">
         </div>
       </form>
     </div>

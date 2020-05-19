@@ -12,11 +12,11 @@
  // $results = $records->fetch(PDO::FETCH_ASSOC);
    
   if ($deleteClinic->execute()) {
-    $messageDeleteClinic = 'Successfully deleted Clinic';
+//$messageDeleteClinic = 'Successfully deleted Clinic';
     header('Location: /proyecto_termina_I/clinicsManagement.php');
    //     header('Location: https://proyecto-terminal-jocr.000webhostapp.com/clinicsManagement.php');
   } else {
-    $messageDeleteClinic = 'Sorry there must have been an issue creating your client';
+    $messageDeleteClinic = 'Tuvimos problemas borrando su clinica intente de nuevo';
   }
 
 ?>

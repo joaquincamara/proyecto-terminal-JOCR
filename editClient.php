@@ -110,7 +110,7 @@
         <div class="clientRegistryInputsSection">
 
           <div class="clientRegistryInputsSection-box1">
-          <input type="hidden" name="id" value="<?php echo $clientToResult['id'] ?>">
+            <input type="hidden" name="id" value="<?php echo $clientToResult['id'] ?>">
             <input value="<?php echo $clientToResult['completeName'] ?>" required id="completeName" placeholder="Nombre completo" name="completeName" type="text">
             <input value="<?php echo $clientToResult['email'] ?>" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" id="email" placeholder="Correo electrónico" name="email" type="text" id="email" >
             <input value="<?php echo $clientToResult['phone'] ?>" required id="phone" placeholder="Teléfono celular" name="phone" type="text" id="phone">

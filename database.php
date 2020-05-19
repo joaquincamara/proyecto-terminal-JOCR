@@ -34,11 +34,15 @@ try {
     $clients = null;
     $specialists = null;
     $clinics = null;
+    $meets = null;
 
     $clientRecords = $conn ->prepare('SELECT completeName, reasonForVisit, id FROM clients');
     $clientRecords->execute();
     $clientResults = $clientRecords->fetch(PDO::FETCH_ASSOC);
 
+    $meetsRecords = $conn ->prepare('SELECT personToScheduleDate, scheduleTime, scheduleDate, id FROM meets');
+    $meetsRecords->execute();
+    $meetsResults = $meetsRecords->fetch(PDO::FETCH_ASSOC);
 
     $type = "specialist";
     $specialistRecords = $conn ->prepare('SELECT name, fatherLastName, motherLastName, id FROM users WHERE usertype = :usertype');
@@ -56,6 +60,7 @@ try {
       $clients = $clientResults;
       $specialists = $specialistResults;
       $clinics = $clinicResults;
+      $meets = $meetsResults;
     }
   }
 } catch (PDOException $e) {
